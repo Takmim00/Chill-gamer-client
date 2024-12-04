@@ -1,21 +1,63 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { authContext } from "../providers/AuthProvider";
 
 const ReviewDetails = () => {
   const { id } = useParams();
   const { user } = useContext(authContext);
   const [review, setReview] = useState(null);
+  const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5000/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
+
+    
+    const addedGame = localStorage.getItem(`watchList-${id}`);
+    if (addedGame) {
+      setIsAdded(true);
+    }
   }, [id]);
 
+  const handleAddToWatchList = () => {
+    if (!user) {
+      toast.error("You must be logged in to add to the watchList!", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    const watchListData = {
+      ...review,
+      userEmail: user.email,
+      username: user.name,
+    };
+
+    fetch("http://localhost:5000/watchList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(watchListData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          localStorage.setItem(`watchList-${id}`, JSON.stringify(review));
+          setIsAdded(true);
+          toast.success("Added to WatchList!", {
+            position: "top-center",
+            autoClose: 3000,
+          });
+        }
+      });
+  };
 
   if (!review) return <span className="loading loading-bars loading-lg"></span>;
+
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <img
@@ -40,11 +82,17 @@ const ReviewDetails = () => {
         </p>
       </div>
       <button
-        onClick={handleAddToWatchlist}
-        className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        onClick={handleAddToWatchList}
+        disabled={isAdded}
+        className={`mt-6 px-6 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
+          ${isAdded
+            ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+            : "bg-blue-500 text-white hover:bg-blue-600" 
+          }`}
       >
-        Add to WatchList
+        {isAdded ? "Added to WatchList" : "Add to WatchList"}
       </button>
+      <ToastContainer />
     </div>
   );
 };

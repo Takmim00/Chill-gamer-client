@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const HighestRatedGame = ({ review }) => {
   return (
     <div>
-      <h2>Highest Rated Game</h2>
+      <h2 className="text-center font-bold text-2xl my-6">Highest Rated Game</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {review.map((game) => (
           <div

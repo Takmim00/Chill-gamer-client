@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { authContext } from "../providers/AuthProvider";
 
 const Register = () => {
-  const { updateUserProfile, setUser, createNewUser, handleGoogleLogin } =
+  const { setUser, createNewUser, handleGoogleLogin } =
     useContext(authContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -37,14 +37,7 @@ const Register = () => {
         const user = { ...result.user, displayName: name, photoURL: photo };
         setUser(user);
 
-        updateUserProfile({ displayName: name, photoURL: photo })
-          .then(() => {
-            toast.success("Registration successful!");
-            navigate("/");
-          })
-          .catch((err) => {
-            toast.error("Error updating profile: " + err);
-          });
+        navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message || "An error occurred";
