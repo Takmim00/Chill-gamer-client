@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const HighestRatedGame = ({ review }) => {
   return (
     <div>
@@ -26,11 +28,13 @@ const HighestRatedGame = ({ review }) => {
               <p className="text-sm text-gray-600 mb-3">
                 Released: <span className="font-medium">{game.year}</span>
               </p>
+              <NavLink to={`/reviewDetails/${game._id}`}>
               <button
                 className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Explore Details
               </button>
+              </NavLink>
             </div>
           </div>
         ))}

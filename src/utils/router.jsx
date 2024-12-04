@@ -7,6 +7,7 @@ import MyReview from "../components/MyReview";
 import GameWatchList from "../components/GameWatchlist";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import ReviewDetails from "../components/ReviewDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:'/addReview',
         element:<AddReview></AddReview>
+      },
+      {
+        path:'/reviewDetails/:id',
+        element:<ReviewDetails></ReviewDetails>
       },
       {
         path:'/myReview',
