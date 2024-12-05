@@ -32,9 +32,10 @@ const ReviewDetails = () => {
 
     const watchListData = {
       ...review,
-      userEmail: user.email,
-      username: user.name,
+      email: user.email,
+      name: user.displayName,
     };
+    console.log(watchListData);
 
     fetch("http://localhost:5000/watchList", {
       method: "POST",
@@ -75,10 +76,7 @@ const ReviewDetails = () => {
           <span className="font-semibold">Genre:</span> {review.genre}
         </p>
         <p className="text-sm text-gray-500">
-          <span className="font-semibold">Reviewer:</span> {review.username}
-        </p>
-        <p className="text-sm text-gray-500">
-          <span className="font-semibold">Email:</span> {review.userEmail}
+          <span className="font-semibold">Email:</span> {review.email}
         </p>
       </div>
       <button

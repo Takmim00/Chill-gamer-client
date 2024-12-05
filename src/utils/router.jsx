@@ -17,11 +17,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: ()=> fetch('http://localhost:5000/review')
+        loader: ()=> fetch('http://localhost:5000/review/limit')
       },
       {
         path:'/allReviews',
-        element:<AllReviews></AllReviews>
+        element:<AllReviews></AllReviews>,
+        loader: ()=> fetch('http://localhost:5000/review/all')
       },
       {
         path:'/addReview',

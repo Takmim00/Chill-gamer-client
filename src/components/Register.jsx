@@ -35,8 +35,8 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         const user = { ...result.user, displayName: name, photoURL: photo };
+        console.log(user);
         setUser(user);
-
         navigate("/");
       })
       .catch((error) => {
@@ -44,6 +44,7 @@ const Register = () => {
         toast.error(errorMessage);
       });
   };
+
   const googleLogIngHandler = () => {
     handleGoogleLogin().then((res) => {
       const redirectTo = location.state?.from || "/";

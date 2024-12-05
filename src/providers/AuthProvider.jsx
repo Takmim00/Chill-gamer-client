@@ -13,7 +13,7 @@ export const authContext = createContext();
 const AuthProvider = ({ routes }) => {
   const googleProvider = new GoogleAuthProvider();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState( JSON.parse(localStorage.getItem("user")) || null);
   const [loading, setLoading] = useState(true);
 
   const createNewUser = (email, password) => {
@@ -44,6 +44,13 @@ const AuthProvider = ({ routes }) => {
       };
     });
   }, []);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
 
   const handleGoogleLogin = () => {
     return signInWithPopup(auth, googleProvider);

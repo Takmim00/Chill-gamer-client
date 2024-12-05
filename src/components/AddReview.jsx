@@ -7,7 +7,7 @@ const AddReview = () => {
   const { user } = useContext(authContext);
   const genres = ["Action", "RPG", "Adventure", "Puzzle", "Sports"];
 
-  // console.log(user.displayName);
+
   const handleAddReview = (e) => {
     e.preventDefault();
 
@@ -19,7 +19,7 @@ const AddReview = () => {
     const year = form.year.value;
     const genre = form.genre.value;
     const email = user.email;
-    const username = user.username;
+    const name = user.name;
 
     const addReview = {
       coverImage,
@@ -29,7 +29,7 @@ const AddReview = () => {
       year,
       genre,
       email,
-      username,
+      name,
     };
     console.log(addReview);
 
@@ -51,6 +51,7 @@ const AddReview = () => {
         }
       });
   };
+
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
@@ -154,14 +155,13 @@ const AddReview = () => {
         </div>
         <div>
           <label
-            htmlFor="username"
             className="block text-sm font-medium text-gray-700"
           >
             User Name
           </label>
           <input
             type="text"
-            name="username"
+            name="name"
             value={user?.displayName}
             className=" p-2 w-full border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
             readOnly
