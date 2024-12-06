@@ -2,21 +2,22 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../providers/AuthProvider";
 import { useState, useEffect } from "react";
-import './home.css';
+import "./home.css";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-    useEffect(() => {
-        document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
-        localStorage.setItem("theme", theme);
-    }, [theme]);
+  useEffect(() => {
+    document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-    };
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
   return (
     <div className="navbar py-4 w-11/12 mx-auto">
@@ -43,30 +44,30 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-            <NavLink to="/" className="flex items-center">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/allReviews" className="flex items-center">
-              All Reviews
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/addReview" className="flex items-center">
-              Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/myReview" className="flex items-center">
-              My Reviews
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/watchList" className="flex items-center">
-              Game WatchList
-            </NavLink>
-          </li>
+              <NavLink to="/" className="flex items-center">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/allReviews" className="flex items-center">
+                All Reviews
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/addReview" className="flex items-center">
+                Add Review
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/myReview" className="flex items-center">
+                My Reviews
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/watchList" className="flex items-center">
+                Game WatchList
+              </NavLink>
+            </li>
           </ul>
         </div>
         <Link to="/" className="md:text-2xl   font-bold flex items-center">
@@ -103,7 +104,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-      {!user ? (
+        {!user ? (
           <>
             <NavLink to="/login">
               <button className="btn bg-red-500 text-white">Login</button>
@@ -116,12 +117,18 @@ const Navbar = () => {
           </>
         ) : (
           <div className="flex items-center space-x-4">
-            <div className="tooltip tooltip-bottom" data-tip={user.email}>
+            <div
+              className="my-anchor-element"
+              data-tip={user?.displayName || "User"}
+            >
               <img
                 src={user?.photoURL}
                 alt=""
                 className="w-10 h-10 rounded-full object-cover border-2 border-red-500"
               />
+              <Tooltip anchorSelect=".my-anchor-element" place="bottom">
+                {user?.displayName || "User"}
+              </Tooltip>
             </div>
             <button
               onClick={logout}
@@ -132,13 +139,13 @@ const Navbar = () => {
           </div>
         )}
         <div className="flex justify-end p-4">
-                <button
-                    onClick={toggleTheme}
-                    className="px-3 py-3 rounded-full bg-gray-800 text-white dark:bg-gray-300 dark:text-black transition-colors"
-                >
-                    {theme === "light" ? <MdDarkMode/> : <MdOutlineLightMode/>}
-                </button>
-            </div>
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-3 rounded-full bg-gray-800 text-white dark:bg-gray-300 dark:text-black transition-colors"
+          >
+            {theme === "light" ? <MdDarkMode /> : <MdOutlineLightMode />}
+          </button>
+        </div>
       </div>
     </div>
   );
