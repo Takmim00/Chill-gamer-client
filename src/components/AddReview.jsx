@@ -1,12 +1,11 @@
+import { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { authContext } from "../providers/AuthProvider";
-import { useContext } from "react";
 
 const AddReview = () => {
   const { user } = useContext(authContext);
   const genres = ["Action", "RPG", "Adventure", "Puzzle", "Sports"];
-
 
   const handleAddReview = (e) => {
     e.preventDefault();
@@ -31,9 +30,9 @@ const AddReview = () => {
       email,
       displayName,
     };
-    console.log(addReview);
 
-    fetch("http://localhost:5000/review", {
+
+    fetch("https://chill-gamer-server-seven.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,7 +41,6 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           toast.success("Review added successfully!", {
             position: "top-center",
@@ -51,7 +49,6 @@ const AddReview = () => {
         }
       });
   };
-
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
@@ -154,9 +151,7 @@ const AddReview = () => {
           />
         </div>
         <div>
-          <label
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label className="block text-sm font-medium text-gray-700">
             User Name
           </label>
           <input

@@ -35,7 +35,6 @@ const Register = () => {
     createNewUser(email, password)
       .then((result) => {
         const user = { ...result.user, displayName: name, photoURL: photo };
-        console.log(user);
         setUser(user);
         navigate("/");
       })

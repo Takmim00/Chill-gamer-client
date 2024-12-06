@@ -10,11 +10,10 @@ const ReviewDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${id}`)
+    fetch(`https://chill-gamer-server-seven.vercel.app/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
 
-    
     const addedGame = localStorage.getItem(`watchList-${id}`);
     if (addedGame) {
       setIsAdded(true);
@@ -35,9 +34,8 @@ const ReviewDetails = () => {
       email: user.email,
       name: user.displayName,
     };
-    console.log(watchListData);
 
-    fetch("http://localhost:5000/watchList", {
+    fetch("https://chill-gamer-server-seven.vercel.app/watchList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,9 +81,10 @@ const ReviewDetails = () => {
         onClick={handleAddToWatchList}
         disabled={isAdded}
         className={`mt-6 px-6 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 
-          ${isAdded
-            ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-            : "bg-blue-500 text-white hover:bg-blue-600" 
+          ${
+            isAdded
+              ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+              : "bg-blue-500 text-white hover:bg-blue-600"
           }`}
       >
         {isAdded ? "Added to WatchList" : "Add to WatchList"}

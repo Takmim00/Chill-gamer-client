@@ -43,10 +43,10 @@ const UpdateReview = () => {
       displayName,
     };
 
-    console.log(updatedReview);
+
 
     //send data to the server
-    fetch(`http://localhost:5000/review/${_id}`, {
+    fetch(`https://chill-gamer-server-seven.vercel.app/review/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -55,7 +55,6 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success("Updated Review successfully!", {
             position: "top-center",
