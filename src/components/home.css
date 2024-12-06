@@ -1,0 +1,15 @@
+/* styles.css */
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Optional: Transition for smooth theme change */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}

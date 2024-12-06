@@ -1,9 +1,22 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { authContext } from "../providers/AuthProvider";
+import { useState, useEffect } from "react";
+import './home.css';
+import { MdDarkMode } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+    useEffect(() => {
+        document.body.className = theme === "dark" ? "dark-theme" : "light-theme";
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    };
 
   return (
     <div className="navbar py-4 w-11/12 mx-auto">
@@ -118,6 +131,14 @@ const Navbar = () => {
             </button>
           </div>
         )}
+        <div className="flex justify-end p-4">
+                <button
+                    onClick={toggleTheme}
+                    className="px-3 py-3 rounded-full bg-gray-800 text-white dark:bg-gray-300 dark:text-black transition-colors"
+                >
+                    {theme === "light" ? <MdDarkMode/> : <MdOutlineLightMode/>}
+                </button>
+            </div>
       </div>
     </div>
   );
