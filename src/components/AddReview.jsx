@@ -162,7 +162,7 @@ const AddReview = () => {
           <input
             type="text"
             name="displayName"
-            value={user?.name}
+            value={user?.displayName}
             className=" p-2 w-full border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
             readOnly
           />

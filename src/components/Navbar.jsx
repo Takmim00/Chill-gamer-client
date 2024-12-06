@@ -107,10 +107,10 @@ const Navbar = () => {
         {!user ? (
           <>
             <NavLink to="/login">
-              <button className="btn bg-red-500 text-white">Login</button>
+              <button className="btn bg-green-400 text-white">Login</button>
             </NavLink>
             <NavLink to="/register">
-              <button className="btn bg-red-500 text-white">
+              <button className="btn bg-green-400 text-white">
                 Registration
               </button>
             </NavLink>
@@ -124,7 +124,7 @@ const Navbar = () => {
               <img
                 src={user?.photoURL}
                 alt=""
-                className="w-10 h-10 rounded-full object-cover border-2 border-red-500"
+                className="w-10 h-10 rounded-full object-cover border-2 border-green-400"
               />
               <Tooltip anchorSelect=".my-anchor-element" place="bottom">
                 {user?.displayName || "User"}
@@ -132,7 +132,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={logout}
-              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+              className="px-4 py-2 bg-green-400 text-white rounded hover:bg-green-600 transition"
             >
               Log Out
             </button>

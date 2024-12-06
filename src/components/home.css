@@ -14,3 +14,8 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+.active{
+    color: #4ade80;
+    
+    
+}
