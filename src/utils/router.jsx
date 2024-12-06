@@ -10,12 +10,14 @@ import Register from "../components/Register";
 import ReviewDetails from "../components/ReviewDetails";
 import UpdateReview from "../components/UpdateReview";
 import PrivateRoute from "../components/private/PrivateRoute";
+import ErrorPage from "../components/Errorpage";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
