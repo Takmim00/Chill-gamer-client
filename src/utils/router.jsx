@@ -9,6 +9,8 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import ReviewDetails from "../components/ReviewDetails";
 import UpdateReview from "../components/UpdateReview";
+import PrivateRoute from "../components/private/PrivateRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -22,12 +24,16 @@ const router = createBrowserRouter([
       },
       {
         path:'/allReviews',
-        element:<AllReviews></AllReviews>,
+        element:
+          <AllReviews></AllReviews>
+        ,
         loader: ()=> fetch('http://localhost:5000/review/all')
       },
       {
         path:'/addReview',
-        element:<AddReview></AddReview>
+        element:<PrivateRoute>
+          <AddReview></AddReview>
+        </PrivateRoute>
       },
       {
         path:'/reviewDetails/:id',
@@ -35,11 +41,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/myReview',
-        element:<MyReview></MyReview>
+        element:<PrivateRoute><MyReview></MyReview></PrivateRoute>
       },
       {
         path:'/watchList',
-        element:<GameWatchList></GameWatchList>
+        element:<PrivateRoute><GameWatchList></GameWatchList></PrivateRoute>
       },
       {
         path:'/login',
