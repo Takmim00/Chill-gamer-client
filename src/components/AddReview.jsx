@@ -19,7 +19,7 @@ const AddReview = () => {
     const year = form.year.value;
     const genre = form.genre.value;
     const email = user.email;
-    const name = user.name;
+    const displayName = user.displayName;
 
     const addReview = {
       coverImage,
@@ -29,7 +29,7 @@ const AddReview = () => {
       year,
       genre,
       email,
-      name,
+      displayName,
     };
     console.log(addReview);
 
@@ -161,8 +161,8 @@ const AddReview = () => {
           </label>
           <input
             type="text"
-            name="name"
-            value={user?.displayName}
+            name="displayName"
+            value={user?.name}
             className=" p-2 w-full border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
             readOnly
           />

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { authContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -17,20 +18,38 @@ const MyReview = () => {
       .then((data) => setReviews(data))
   }, [user.email]);
 
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete?");
-    if (confirmDelete) {
-      fetch(`http://localhost:5000/review/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            toast.success("Review deleted successfully");
-            setReviews(reviews.filter((review) => review._id !== id));
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `http://localhost:5000/review/${_id}`,
+          {
+            method: "DELETE",
           }
-        });
-    }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Coffee has been deleted.",
+                icon: "success",
+              });
+              const remaining = reviews.filter((rev) => rev._id !== _id);
+              setReviews(remaining);
+            }
+          });
+      }
+    });
   };
 
   const handleUpdate = (id) => {
