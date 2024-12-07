@@ -47,13 +47,13 @@ const Footer = () => {
               RESERVED.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-2xl hover:text-green-400">
+              <a href="https://www.facebook.com/takmim00" className="text-2xl hover:text-green-400">
                 <FaFacebook />
               </a>
-              <a href="#" className="text-2xl hover:text-green-400">
+              <a href="https://www.instagram.com/takmim_00/" className="text-2xl hover:text-green-400">
                 <FaInstagram />
               </a>
-              <a href="#" className="text-2xl hover:text-green-400">
+              <a href="https://x.com/MTakmim58515" className="text-2xl hover:text-green-400">
                 <FaTwitter />
               </a>
             </div>
