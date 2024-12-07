@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { authContext } from "../providers/AuthProvider";
 
 const Register = () => {
-  const { setUser, createNewUser, handleGoogleLogin } =
+  const { setUser, createNewUser, handleGoogleLogin , handleGithubLogin } =
     useContext(authContext);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +46,12 @@ const Register = () => {
 
   const googleLogIngHandler = () => {
     handleGoogleLogin().then((res) => {
+      const redirectTo = location.state?.from || "/";
+      navigate(redirectTo);
+    });
+  };
+  const githubLogIngHandler = () => {
+    handleGithubLogin().then((res) => {
       const redirectTo = location.state?.from || "/";
       navigate(redirectTo);
     });
@@ -117,13 +123,20 @@ const Register = () => {
             <button className="btn btn-primary font-semibold text-xl rounded-md">Register</button>
           </div>
         </form>
-        <div className=" items-center flex justify-center mb-4">
+        <div className="flex justify-center gap-2 mb-4">
           <button
             onClick={googleLogIngHandler}
-            className="btn text-xl  rounded-lg w-[80%]"
+            className="btn text-xl  rounded-lg ]"
           >
             <FaGoogle />
             Google
+          </button>
+          <button
+            onClick={githubLogIngHandler}
+            className="btn text-xl  rounded-lg "
+          >
+            <FaGithub />
+            GitHub
           </button>
         </div>
         <p className="text-center font-semibold">
