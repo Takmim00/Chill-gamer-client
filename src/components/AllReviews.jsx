@@ -8,7 +8,7 @@ const AllReviews = () => {
   // useEffect(() => {
   //   // Fetch sorted data whenever sortBy or order changes
   //   fetch(
-  //     `http://localhost:5000/review/sort?sortBy=${sortBy}&order=${ascOrder}`
+  //     `https://chill-gamer-server-seven.vercel.app/review/sort?sortBy=${sortBy}&order=${ascOrder}`
   //   )
   //     .then((res) => res.json())
   //     .then((data) => setReviews(data));
