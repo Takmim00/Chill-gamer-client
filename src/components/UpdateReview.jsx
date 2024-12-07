@@ -43,10 +43,8 @@ const UpdateReview = () => {
       displayName,
     };
 
-
-
     //send data to the server
-    fetch(`https://chill-gamer-server-seven.vercel.app/review/${_id}`, {
+    fetch(`http://localhost:5000/review/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

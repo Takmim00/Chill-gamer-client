@@ -31,8 +31,7 @@ const AddReview = () => {
       displayName,
     };
 
-
-    fetch("https://chill-gamer-server-seven.vercel.app/review", {
+    fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -103,7 +102,7 @@ const AddReview = () => {
             type="number"
             name="rating"
             className=" p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter rating (e.g., 8)"
+            placeholder="Enter rating (e.g., 10)"
             min="1"
             max="10"
             required
@@ -117,7 +116,7 @@ const AddReview = () => {
             type="number"
             name="year"
             className=" p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter the publishing year (e.g., 2024)"
+            placeholder="Enter the publishing year"
             required
           />
         </div>
@@ -165,7 +164,7 @@ const AddReview = () => {
         <div className="col-span-2 ">
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-green-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             Submit Review
           </button>

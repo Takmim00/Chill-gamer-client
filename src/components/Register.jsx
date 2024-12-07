@@ -114,7 +114,7 @@ const Register = () => {
             </Link>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-neutral rounded-sm">Register</button>
+            <button className="btn btn-primary font-semibold text-xl rounded-md">Register</button>
           </div>
         </form>
         <div className=" items-center flex justify-center mb-4">

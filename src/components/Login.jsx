@@ -89,7 +89,7 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-neutral rounded-sm">Login</button>
+              <button className="btn btn-primary font-semibold text-xl rounded-md">Login</button>
             </div>
           </form>
           <div className=" items-center flex justify-center mb-4">

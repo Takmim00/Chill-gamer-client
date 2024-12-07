@@ -10,7 +10,7 @@ const ReviewDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    fetch(`https://chill-gamer-server-seven.vercel.app/review/${id}`)
+    fetch(`http://localhost:5000/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
 
@@ -32,10 +32,10 @@ const ReviewDetails = () => {
     const watchListData = {
       ...review,
       email: user.email,
-      name: user.displayName,
+      displayName: user.displayName,
     };
 
-    fetch("https://chill-gamer-server-seven.vercel.app/watchList", {
+    fetch("http://localhost:5000/watchList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,6 +72,9 @@ const ReviewDetails = () => {
         </p>
         <p className="text-sm text-gray-500">
           <span className="font-semibold">Genre:</span> {review.genre}
+        </p>
+        <p className="text-sm text-gray-500">
+          <span className="font-semibold">Name:</span> {review.displayName}
         </p>
         <p className="text-sm text-gray-500">
           <span className="font-semibold">Email:</span> {review.email}
