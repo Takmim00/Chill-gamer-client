@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { authContext } from "../providers/AuthProvider";
 
 const Login = () => {
-    const { userLogin, handleGoogleLogin } = useContext(authContext);
+    const { userLogin, handleGoogleLogin, handleGithubLogin } = useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +31,12 @@ const Login = () => {
   };
   const googleLogIngHandler = () => {
     handleGoogleLogin().then((res) => {
+      const redirectTo = location.state?.from || "/";
+      navigate(redirectTo);
+    });
+  };
+  const githubLogIngHandler = () => {
+    handleGithubLogin().then((res) => {
       const redirectTo = location.state?.from || "/";
       navigate(redirectTo);
     });
@@ -95,11 +101,18 @@ const Login = () => {
           <div className=" items-center flex justify-center mb-4">
             <button
               onClick={googleLogIngHandler}
-              className="btn text-xl  rounded-lg w-[80%]"
+              className="btn text-xl  rounded-lg"
             >
               <FaGoogle />
               Google
             </button>
+            <button
+            onClick={githubLogIngHandler}
+            className="btn text-xl  rounded-lg "
+          >
+            <FaGithub />
+            GitHub
+          </button>
           </div>
           <p className="text-center font-semibold">
             Don’t Have An Account ?{" "}

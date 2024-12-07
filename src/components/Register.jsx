@@ -126,7 +126,7 @@ const Register = () => {
         <div className="flex justify-center gap-2 mb-4">
           <button
             onClick={googleLogIngHandler}
-            className="btn text-xl  rounded-lg ]"
+            className="btn text-xl  rounded-lg"
           >
             <FaGoogle />
             Google
