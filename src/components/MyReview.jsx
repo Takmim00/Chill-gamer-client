@@ -49,9 +49,9 @@ const MyReview = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container px-4 py-6 max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4">My Reviews</h1>
-      {reviews.length > 0 ? (
+
         <table className="min-w-full table-auto border border-gray-300">
           <thead>
             <tr className="bg-gray-100">
@@ -60,6 +60,9 @@ const MyReview = () => {
               </th>
               <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                 Date
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                Name
               </th>
               <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
                 Actions
@@ -71,6 +74,7 @@ const MyReview = () => {
               <tr key={review._id} className="border-t w-full">
                 <td className="px-4 py-2">{review.title}</td>
                 <td className="px-4 py-2">{review.year}</td>
+                <td className="px-4 py-2">{review.displayName}</td>
                 <td className="px-4 py-2">
                   <button
                     onClick={() => handleUpdate(review._id)}
@@ -89,9 +93,7 @@ const MyReview = () => {
             ))}
           </tbody>
         </table>
-      ) : (
-        <p>No reviews found.</p>
-      )}
+      
     </div>
   );
 };

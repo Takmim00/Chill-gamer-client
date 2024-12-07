@@ -54,7 +54,7 @@ const UpdateReview = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          toast.success("Updated Review successfully!", {
+          toast.success("Updated successfully!", {
             position: "top-center",
             autoClose: 3000,
           });
@@ -119,9 +119,10 @@ const UpdateReview = () => {
             name="rating"
             defaultValue={rating}
             className=" p-2 w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter rating (e.g., 8)"
+            placeholder="Enter rating (e.g., 10)"
             min="1"
             max="10"
+            step="0.1" 
             required
           />
         </div>
@@ -185,7 +186,7 @@ const UpdateReview = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Submit Review
+            Update Review
           </button>
         </div>
       </form>

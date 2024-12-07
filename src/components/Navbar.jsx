@@ -6,6 +6,7 @@ import "./home.css";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
+import { GrGamepad } from "react-icons/gr";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
@@ -70,8 +71,8 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="md:text-2xl   font-bold flex items-center">
-          Game
+        <Link to="/" className="md:text-2xl gap-2  font-bold flex items-center">
+        <GrGamepad className="text-3xl text-green-400" /> <p>Ga<span className="text-green-400">me</span></p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
