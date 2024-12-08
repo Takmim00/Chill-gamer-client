@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { authContext } from "../providers/AuthProvider";
-import { toast } from "react-toastify";
+
 
 const GameWatchList = () => {
   const { user } = useContext(authContext);
@@ -8,8 +8,7 @@ const GameWatchList = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`chill-gamer-server-seven.vercel.app/
-watchList/${user.email}`)
+      fetch(`https://chill-gamer-server-seven.vercel.app/watchList/${user.email}`)
         .then((res) => res.json())
         .then((data) => setWatchList(data))
     }

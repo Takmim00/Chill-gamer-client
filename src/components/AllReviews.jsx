@@ -4,16 +4,14 @@ import { NavLink, useLoaderData } from "react-router-dom";
 const AllReviews = () => {
   const review = useLoaderData();
   const [genre, setGenre] = useState("");
-  // const [rating, setRating] = useState("");
   const [filteredReviews, setFilteredReviews] = useState(review);
-  const [sortField, setSortField] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOption, setSortOption] = useState("");
 
   const uniqueGenres = [...new Set(review.map((game) => game.genre))];
-  const fetchSortedReviews = async () => {
+  const fetchSortedReviews = async (sortField, sortOrder) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
+        `https://chill-gamer-server-seven.vercel.app/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
       );
       const data = await response.json();
       setFilteredReviews(data);
@@ -23,8 +21,11 @@ const AllReviews = () => {
   };
 
   useEffect(() => {
-    fetchSortedReviews();
-  }, []);
+    if (sortOption) {
+      const [field, order] = sortOption.split("-");
+      fetchSortedReviews(field, order);
+    }
+  }, [sortOption]);
 
   useEffect(() => {
     if (genre) {
@@ -34,56 +35,39 @@ const AllReviews = () => {
     }
   }, [genre, review]);
 
-  // useEffect(() => {
-  //   if (rating) {
-  //     setFilteredReviews(review.filter((game) => game.rating === rating));
-  //   } else {
-  //     setFilteredReviews(review);
-  //   }
-  // }, [rating, review]);
   return (
     <div>
-      <h2 className="text-center font-bold text-2xl my-6">All Game</h2>
-      <div className="flex justify-end my-4">
-        <select
-          className="border border-gray-300 p-2 rounded-md"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        >
-          <option value="">All Genres</option>
-          {uniqueGenres.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="flex justify-end my-4 space-x-2">
-        <select
-          className="border border-gray-300 p-2 rounded-md"
-          value={sortField}
-          onChange={(e) => setSortField(e.target.value)}
-        >
-          <option value="">Sort By</option>
-          <option value="rating">Rating</option>
-          <option value="year">Year</option>
-        </select>
-
-        <select
-          className="border border-gray-300 p-2 rounded-md"
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-        >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md"
-          onClick={fetchSortedReviews}
-        >
-          Apply Sort
-        </button>
+      <div className="flex justify-between">
+        <h2 className="text-center font-bold text-2xl my-6">All Reviews</h2>
+        <div className="flex justify-end gap-4">
+          <div className="flex my-4">
+            <select
+              className="border border-gray-300 p-2 rounded-md"
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+            >
+              <option value="">All Genres</option>
+              {uniqueGenres.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex my-4 space-x-2">
+            <select
+              className="border border-gray-300 p-2 rounded-md"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="">Sort By</option>
+              <option value="rating-asc">Rating (Ascending)</option>
+              <option value="rating-desc">Rating (Descending)</option>
+              <option value="year-asc">Year (Ascending)</option>
+              <option value="year-desc">Year (Descending)</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

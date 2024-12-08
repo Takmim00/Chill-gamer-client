@@ -10,7 +10,7 @@ const ReviewDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${id}`)
+    fetch(`https://chill-gamer-server-seven.vercel.app/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
 
@@ -35,7 +35,7 @@ const ReviewDetails = () => {
       displayName: user.displayName,
     };
 
-    fetch("http://localhost:5000/watchList", {
+    fetch("https://chill-gamer-server-seven.vercel.app/watchList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,8 +44,8 @@ const ReviewDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.insertedId) {
-          localStorage.setItem(`watchList-${id}`, JSON.stringify(review));
           setIsAdded(true);
           toast.success("Added to WatchList!", {
             position: "top-center",

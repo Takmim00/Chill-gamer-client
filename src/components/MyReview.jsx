@@ -9,7 +9,9 @@ const MyReview = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myReviews?email=${user.email}`)
+    fetch(
+      `https://chill-gamer-server-seven.vercel.app/myReviews?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user.email]);
@@ -25,7 +27,7 @@ const MyReview = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://chill-gamer-server-seven.vercel.app/review/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
