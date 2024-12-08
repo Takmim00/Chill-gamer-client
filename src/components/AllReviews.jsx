@@ -1,44 +1,93 @@
+import { useEffect, useState } from "react";
 import { NavLink, useLoaderData } from "react-router-dom";
-// import { useEffect, useState } from "react";
 
 const AllReviews = () => {
   const review = useLoaderData();
-  // const [sortBy, setSortBy] = useState("rating");
-  // const [ascOrder, setOrder] = useState("asc");
-  // useEffect(() => {
-  //   // Fetch sorted data whenever sortBy or order changes
-  //   fetch(
-  //     `https://chill-gamer-server-seven.vercel.app/review/sort?sortBy=${sortBy}&order=${ascOrder}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setReviews(data));
-  // }, [sortBy, ascOrder]);
+  const [genre, setGenre] = useState("");
+  // const [rating, setRating] = useState("");
+  const [filteredReviews, setFilteredReviews] = useState(review);
+  const [sortField, setSortField] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
-  // const handleSortChange = (e) => {
-  //   const [field, direction] = e.target.value.split("-");
-  //   setSortBy(field);
-  //   setOrder(direction);
-  // };
+  const uniqueGenres = [...new Set(review.map((game) => game.genre))];
+  const fetchSortedReviews = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
+      );
+      const data = await response.json();
+      setFilteredReviews(data);
+    } catch (error) {
+      console.error("Error fetching sorted reviews:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSortedReviews();
+  }, []);
+
+  useEffect(() => {
+    if (genre) {
+      setFilteredReviews(review.filter((game) => game.genre === genre));
+    } else {
+      setFilteredReviews(review);
+    }
+  }, [genre, review]);
+
+  // useEffect(() => {
+  //   if (rating) {
+  //     setFilteredReviews(review.filter((game) => game.rating === rating));
+  //   } else {
+  //     setFilteredReviews(review);
+  //   }
+  // }, [rating, review]);
   return (
     <div>
-      <h2 className="text-center font-bold text-2xl my-6">
-        Highest Rated Game
-      </h2>
-
-      {/* <div className="text-center mb-6">
+      <h2 className="text-center font-bold text-2xl my-6">All Game</h2>
+      <div className="flex justify-end my-4">
         <select
-          className="border border-gray-300 rounded-md px-4 py-2"
-          onChange={handleSortChange}
+          className="border border-gray-300 p-2 rounded-md"
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
         >
-          <option value="rating-desc">Sort by Rating: High to Low</option>
-          <option value="rating-asc">Sort by Rating: Low to High</option>
-          <option value="year-desc">Sort by Year: Newest First</option>
-          <option value="year-asc">Sort by Year: Oldest First</option>
+          <option value="">All Genres</option>
+          {uniqueGenres.map((g) => (
+            <option key={g} value={g}>
+              {g}
+            </option>
+          ))}
         </select>
-      </div> */}
+      </div>
+      <div className="flex justify-end my-4 space-x-2">
+        <select
+          className="border border-gray-300 p-2 rounded-md"
+          value={sortField}
+          onChange={(e) => setSortField(e.target.value)}
+        >
+          <option value="">Sort By</option>
+          <option value="rating">Rating</option>
+          <option value="year">Year</option>
+        </select>
+
+        <select
+          className="border border-gray-300 p-2 rounded-md"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-md"
+          onClick={fetchSortedReviews}
+        >
+          Apply Sort
+        </button>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {review.map((game) => (
+        {filteredReviews.map((game) => (
           <div
             key={game._id}
             className="bg-white shadow-md rounded-lg overflow-hidden"
