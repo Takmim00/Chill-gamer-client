@@ -1,8 +1,13 @@
-# React + Vite
+# Project Name
+ - Game Review Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Live URL
+ -https://chill-gamer-8a201.web.app/
 
-Currently, two official plugins are available:
+# Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 1. User friendly website.
+ 2. User can login to access the Review Details and add watchlist.
+ 3. User can login to add Reviews.
+ 4. user can update and delete review.
+ 5. Users can show All game review.
