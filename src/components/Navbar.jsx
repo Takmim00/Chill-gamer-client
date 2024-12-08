@@ -72,7 +72,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="md:text-2xl gap-2  font-bold flex items-center">
-        <GrGamepad className="text-3xl text-green-400" /> <p>Ga<span className="text-green-400">me</span></p>
+        <GrGamepad className="text-3xl text-green-400" /> <p>Ga<span className="text-green-400">meX</span></p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
