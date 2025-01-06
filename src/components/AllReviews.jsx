@@ -11,7 +11,7 @@ const AllReviews = () => {
   const fetchSortedReviews = async (sortField, sortOrder) => {
     try {
       const response = await fetch(
-        `https://chill-gamer-server-seven.vercel.app/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
+        `http://localhost:5000/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
       );
       const data = await response.json();
       setFilteredReviews(data);
@@ -36,8 +36,8 @@ const AllReviews = () => {
   }, [genre, review]);
 
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="w-11/12 mx-auto">
+      <div className="flex md:flex-row flex-col justify-between">
         <h2 className="text-center font-bold text-2xl my-6">All Reviews</h2>
         <div className="flex justify-end gap-4">
           <div className="flex my-4">

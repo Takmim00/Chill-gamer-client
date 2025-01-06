@@ -4,7 +4,7 @@ import { GrGamepad } from "react-icons/gr";
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-base-200 text-black py-10 mt-10">
+      <footer className="bg-base-200 text-black py-10 ">
         <div className="container w-10/12  mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Section */}
           <div className="text-center md:text-left">

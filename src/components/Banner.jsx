@@ -38,7 +38,7 @@ const Banner = () => {
     );
   };
   return (
-    <div className="carousel w-full h-[70vh] mt-6">
+    <div className="carousel w-full h-[70vh] ">
       {images.map((image, index) => (
         <div
           key={index}
@@ -68,7 +68,7 @@ const Banner = () => {
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a
               onClick={handlePrevClick}
-              className="btn btn-circle"
+              className="btn btn-circle btn-neutral"
               role="button"
               aria-label="Previous"
             >
@@ -76,7 +76,7 @@ const Banner = () => {
             </a>
             <a
               onClick={handleNextClick}
-              className="btn btn-circle"
+              className="btn btn-circle btn-neutral"
               role="button"
               aria-label="Next"
             >

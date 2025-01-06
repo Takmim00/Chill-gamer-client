@@ -10,7 +10,7 @@ const ReviewDetails = () => {
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    fetch(`https://chill-gamer-server-seven.vercel.app/review/${id}`)
+    fetch(`http://localhost:5000/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
 
@@ -35,7 +35,7 @@ const ReviewDetails = () => {
       displayName: user.displayName,
     };
 
-    fetch("https://chill-gamer-server-seven.vercel.app/watchList", {
+    fetch("http://localhost:5000/watchList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const ReviewDetails = () => {
   if (!review) return <span className="loading loading-bars loading-lg"></span>;
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-4xl mx-auto my-10 p-6 bg-white shadow-lg border rounded-lg">
       <img
         src={review.coverImage}
         alt={review.title}

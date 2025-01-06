@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { authContext } from "../providers/AuthProvider";
-import { useState, useEffect } from "react";
-import "./home.css";
-import { MdDarkMode } from "react-icons/md";
-import { MdOutlineLightMode } from "react-icons/md";
-import { Tooltip } from "react-tooltip";
+import { useContext, useEffect, useState } from "react";
 import { GrGamepad } from "react-icons/gr";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
+import { Link, NavLink } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import { authContext } from "../providers/AuthProvider";
+import "./home.css";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
@@ -72,36 +70,56 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="md:text-2xl gap-2  font-bold flex items-center">
-        <GrGamepad className="text-3xl text-green-400" /> <p>Ga<span className="text-green-400">meX</span></p>
+          <GrGamepad className="text-3xl text-green-400" />{" "}
+          <p>
+            Ga<span className="text-green-400">meX</span>
+          </p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="flex gap-4 px-1">
-          <li>
-            <NavLink to="/" className="flex items-center">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/allReviews" className="flex items-center">
-              All Reviews
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/addReview" className="flex items-center">
-              Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/myReview" className="flex items-center">
-              My Reviews
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/watchList" className="flex items-center">
-              Game WatchList
-            </NavLink>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <NavLink to="/" className="flex items-center">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/allReviews" className="flex items-center">
+                  All Reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/addReview" className="flex items-center">
+                  Add Review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/myReview" className="flex items-center">
+                  My Reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/watchList" className="flex items-center">
+                  Game WatchList
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/" className="flex items-center">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/allReviews" className="flex items-center">
+                  All Reviews
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
@@ -125,7 +143,7 @@ const Navbar = () => {
               <img
                 src={user?.photoURL}
                 alt=""
-                className="w-10 h-10 rounded-full object-cover border-2 border-green-400"
+                className="w-10  h-10  rounded-full object-cover border-2 border-green-400"
               />
               <Tooltip anchorSelect=".my-anchor-element" place="bottom">
                 {user?.displayName || "User"}
@@ -133,7 +151,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={logout}
-              className="px-4 py-2 bg-green-400 text-white rounded hover:bg-green-600 transition"
+              className="md:px-4 md:py-2 bg-green-400 text-white rounded hover:bg-green-600 transition"
             >
               Log Out
             </button>
