@@ -7,7 +7,9 @@ const GameWatchList = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/watchList/${user.email}`)
+      fetch(
+        `https://chill-gamer-server-seven.vercel.app/watchList/${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => setWatchList(data));
     }
@@ -18,7 +20,7 @@ const GameWatchList = () => {
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Game WatchList</h2>
       <table className="min-w-full table-auto">
         <thead>
-          <tr>
+          <tr className="bg-gray-100">
             <th className="px-6 py-3 text-left">No.</th>
             <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
               Game Title

@@ -11,7 +11,7 @@ const AllReviews = () => {
   const fetchSortedReviews = async (sortField, sortOrder) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
+        `https://chill-gamer-server-seven.vercel.app/review/all?sortField=${sortField}&sortOrder=${sortOrder}`
       );
       const data = await response.json();
       setFilteredReviews(data);
