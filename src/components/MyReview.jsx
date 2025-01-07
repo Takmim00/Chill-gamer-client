@@ -51,7 +51,7 @@ const MyReview = () => {
   };
 
   return (
-    <div className="container px-4 py-6 max-w-4xl mx-auto mt-10 bg-white shadow-lg rounded-lg">
+    <div className="container px-4 py-6 max-w-4xl mx-auto my-10 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4 text-center md:text-left">
         My Reviews
       </h1>
