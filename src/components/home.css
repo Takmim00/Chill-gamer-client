@@ -16,7 +16,7 @@ body {
   color: #4ade80;
 }
 
-/* Fix for white box in dark mode */
+
 .white-box {
   background-color: #ffffff;
   color: #000000;
@@ -24,6 +24,6 @@ body {
 }
 
 body.dark-theme .white-box {
-  background-color: #1e1e1e; /* Dark background for the box in dark mode */
-  color: #ffffff; /* White text for better contrast in dark mode */
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
