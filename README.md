@@ -30,6 +30,16 @@ The Game Review Website allows users to log in, access detailed reviews, add rev
 - Mongoose
 - JWT
 - Tailwind CSS
+- Firebase
+- Localforage
+- Match-sorter
+- React Awesome Reveal
+- React Icons
+- React Toastify
+- React Tooltip
+- Sort-by
+- Sweetalert2
+
 
 ## How to Run the Project Locally
 1. Clone the repository:
