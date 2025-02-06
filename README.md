@@ -1,8 +1,8 @@
 
-# Game Review Website
+# GameX Website
 
 ## Project Overview
-The Game Review Website allows users to log in, access detailed reviews, add reviews to their watchlist, and manage their own reviews (update or delete them). Users can also view all available game reviews and interact with them. The website provides an engaging platform for gamers to share and discover opinions about various games.
+The GameX (Game Review) Website allows users to log in, access detailed reviews, add reviews to their watchlist, and manage their own reviews (update or delete them). Users can also view all available game reviews and interact with them. The website provides an engaging platform for gamers to share and discover opinions about various games.
 
 ## Live Project Link
 [Game Review Website](https://chill-gamer-8a201.web.app/)
@@ -66,6 +66,7 @@ The Game Review Website allows users to log in, access detailed reviews, add rev
 
 ## Live Project Link and Other Resources
 - [Game Review Website](https://chill-gamer-8a201.web.app/)
+- **Backend Repository:** [GameX Backend](https://github.com/Takmim00/Chill-gamer-server)
 - GitHub repository (add your GitHub repo link here)
 ```
 
